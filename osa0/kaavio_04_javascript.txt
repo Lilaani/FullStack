@@ -1,0 +1,60 @@
+0.4: uusi muistiinpano
+Kaavio, joka kuvaa mitä tapahtuu tilanteessa, 
+missä käyttäjä luo uuden muistiinpanon ollessaan sivulla 
+https://studies.cs.helsinki.fi/exampleapp/notes, eli kirjoittaa tekstikenttään jotain 
+ja painaa nappia tallenna.
+
+Käyttäjä kirjoittaa selaimeen "https://studies.cs.helsinki.fi/exampleapp/notes" ja painaa enter.
+
+selain->palvelin: HTTP GET https://studies.cs.helsinki.fi/exampleapp/notes
+palvelin-->selain: HTML-koodi
+selain->palvelin: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
+palvelin-->selain: main.css
+selain->palvelin: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.js
+palvelin-->selain: main.js
+selain->palvelin: HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json
+palvelin-->selain: data.json 
+selain->palvelin: HTTP GET https://studies.cs.helsinki.fi/favicon.ico
+selain cache-->selain: favicon.ico
+
+note over selain:
+selain alkaa suorittaa js-koodia
+joka pyytää JSON-datan palvelimelta
+end note
+
+selain->palvelin: HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json
+palvelin-->selain: [{"content":"","date":"2020-10-26T13:26:40.347Z"}, ...]
+
+note over selain:
+selain suorittaa tapahtumankäsittelijän
+joka renderöi muistiinpanot näytölle
+end note
+
+Käyttäjä kirjoittaa tekstikenttään ja painaa save
+
+selain->palvelin: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note
+palvelin-->selain: uudelleen ohjaus /exampleapp/notes
+selain->palvelin: HTTP GET https://studies.cs.helsinki.fi/exampleapp/notes
+palvelin-->selain: HTML-koodi
+selain->palvelin: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
+palvelin-->selain: main.css
+selain->palvelin: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.js
+palvelin-->selain: main.js
+selain->palvelin: HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json
+palvelin-->selain: data.json 
+selain->palvelin: HTTP GET https://studies.cs.helsinki.fi/favicon.ico
+selain cache-->selain: favicon.ico
+
+
+note over selain:
+selain alkaa suorittaa js-koodia
+joka pyytää JSON-datan palvelimelta
+end note
+
+selain->palvelin: HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json
+palvelin-->selain: [[{"content":"","date":"2020-10-26T13:26:40.347Z"} ...]
+
+note over selain:
+selain suorittaa tapahtumankäsittelijän
+joka renderöi muistiinpanot näytölle
+end note
